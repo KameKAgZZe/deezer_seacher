@@ -1,47 +1,28 @@
-﻿
-@using prkt.Models;
-
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
-@model CATALOG
+
 
 <div class="jumbotron">
-    <table class="table">
-        <thead>
-            <tr>
-                <td class="col-xs-3">TITLE</td>
-                <td class="col-xs-3">ARTIST</td>
-                <td class="col-xs-3">COUNTRY</td>
-                <td class="col-xs-3">COMPANY</td>
-                <td class="col-xs-3">PRICE</td>
-                <td class="col-xs-3">YEAR</td>
-            </tr>
-        </thead>
-        <tbody>
-        <td class="ny">@Model.CD[0].TITLE</td>
-        <td class="ny">@Model.CD[0].ARTIST</td>
-        <td class="ny">@Model.CD[0].COUNTRY</td>
-        <td class="ny">@Model.CD[0].COMPANY</td>
-        <td class="ny">@Model.CD[0].PRICE</td>
-        <td class="ny">@Model.CD[0].YEAR</td>
-        </tr>
-        <td class="ny">@Model.CD[2].TITLE</td>
-        <td class="ny">@Model.CD[2].ARTIST</td>
-        <td class="ny">@Model.CD[2].COUNTRY</td>
-        <td class="ny">@Model.CD[2].COMPANY</td>
-        <td class="ny">@Model.CD[2].PRICE</td>
-        <td class="ny">@Model.CD[2].YEAR</td>
-        </tr>
-        <td class="ny">@Model.CD[1].TITLE</td>
-        <td class="ny">@Model.CD[1].ARTIST</td>
-        <td class="ny">@Model.CD[1].COUNTRY</td>
-        <td class="ny">@Model.CD[1].COMPANY</td>
-        <td class="ny">@Model.CD[1].PRICE</td>
-        <td class="ny">@Model.CD[1].YEAR</td>
-        </tr>
-        </tbody>
-    </table>
+    @using (Ajax.BeginForm("DeezerSearch", new AjaxOptions
+    {
+        UpdateTargetId = "results",
+        LoadingElementId = "loading",
+        LoadingElementDuration = 1200
+    }))
+    {
+        <input type="text" name="nick" value="eminem">
+        <input type="submit" value="Parse" />
+
+
+    }
+    
+
+</div>
+<div id="loading" style="display:none; color:green; font-weight:bold;">
+    <p>Загрузка</p>
+</div>
+<div id="results">
 
 </div>

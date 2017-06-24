@@ -1,0 +1,23 @@
+﻿<div id="result">
+    Всего найдено результатов: @ViewBag.total
+    <table class="table table-bordered">
+        <thead>
+        <th>Имя артиста</th>
+        <th>Название песни</th>
+        <th>Название альбома</th>
+        <th>Рейтинг песни</th>
+        <th>Превью песни</th>
+        </thead>
+@foreach (var item in ViewBag.response)
+{
+    <tr>
+        <td><a href="@item.artist.link"><img src="@item.artist.picture_small">    @item.artist.name</a></td>
+        <td><a href="@item.link">@item.title_short</a></td>
+        <td><img src="@item.album.cover_small">  @Ajax.ActionLink((string)item.album.title, "AlbumSearch", new { id = item.album.id,img = item.album.cover_big }, new AjaxOptions { UpdateTargetId = "results"})</td>
+        <td>@item.rank</td>
+        <td><audio controls><source src="@item.preview" type="audio/mp4"></audio></td>
+        </tr>
+}
+        </table>
+
+</div>
